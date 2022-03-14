@@ -1,0 +1,15 @@
+$deepSpaceBlue: #335C67;
+$auburn: #9E2A2B;
+
+footer{
+    background-color: $deepSpaceBlue;
+    color: white;
+
+    .bi{
+        color: $auburn;
+    }
+
+    .copyright{
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
