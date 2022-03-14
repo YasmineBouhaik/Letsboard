@@ -1,0 +1,55 @@
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card">
+                <form [formGroup]="formSearch" class="d-flex flex-wrap">
+                    <div class="card-body col-lg-3 col-12 px-0 py-2 border-end">
+                        <select formControlName="category" class="gameName" class="form-control border-0" name="gameName" placeholder="Catégorie">
+                            <option value="">Sélectionner une catégorie</option>
+                        </select>
+                        <!-- <div>
+                            <i class="bi bi-arrow-down bg-primary"></i>
+                        </div> -->
+                    </div>
+                    <div class="card-body col-lg-4 col-12 px-0 py-2 border-end">
+                        <input formControlName="name" type="text"  class="form-control border-0" name="gameName" placeholder="Loup garou" />
+                    </div>
+                    <div class="card-body col-lg-2 col-12 px-0 py-2 border-end">
+                        <input formControlName="nbPlayerMin" type="number" class="form-control border-0" name="nbMinPlayer" placeholder="Joueurs min" />
+                    </div>
+                    <div class="card-body col-lg-2 col-12 px-0 py-2 border-end">
+                        <input formControlName="nbPlayerMax" type="number"  class="form-control border-0" name="nbMaxPlayer" placeholder="Joueurs max" />
+                    </div>
+                    
+                    <div class="card-body col-lg-1 col-12 px-0 py-0">
+                        <button class="btn btn-primary rounded-0" (click)="searchGame()">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div *ngFor="let item of items" class="col-lg-10 py-2">
+            <div class="card" *ngIf="item.description_preview">
+               <div class="card-body">
+                   <div class="d-flex flex-wrap justify-content-between">
+                       <div class="col-lg-4 col-md-12 col-sm-12">
+                           <img src="{{ item.images.medium }}" alt="jaquette" />
+                       </div>
+                       <div class="col-lg-8 col-md-12 col-sm-12 ps-lg-5 ps-md-0 ps-sm-0">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <div>
+                            <p>{{ item.description_preview }}</p>
+                        </div>
+                       </div>
+                   </div>
+               </div>
+        </div>
+    </div>
+</div>
+
