@@ -1,3 +1,4 @@
+import { JeuxService } from './services/jeux.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LocalisationComponent } from './localisation/localisation.component';
+import {HttpClientModule} from '@angular/common/http';
+import { JeuxComponent } from './jeux/jeux.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,14 +21,19 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HomeComponent,
     CategoriesComponent,
-    LocalisationComponent
+    LocalisationComponent,
+    JeuxComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
+  
+
   ],
-  providers: [],
+  providers: [
+    JeuxService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,42 @@
-<p>categories works!</p>
+
+<div>
+    <p> Catégories de Jeux</p>
+    <div class="row">
+        <h1>JEUX D'AVENTURE</h1>
+        <div class="col-sm-4" *ngFor="let b of boardGames.games">
+            <div class="card">
+                <div class="card-body">
+                    {{ b.name }} 
+                    <img src="{{ b.image_url}}" alt="">
+                </div>
+            </div>
+        </div>
+        <!--<p>{{boardGames.games[0].description_preview}}</p> -->
+    </div>
+
+    <div class="row">
+        <h1>JEUX CARTES</h1>
+        <div class="col-sm-2" *ngFor="let b of cardGames.games">
+             <div class="card">
+                 <div class="card-body">
+                     {{ b.name }}
+                     <img src="{{ b.image_url}}" alt="">
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="row">
+        <h1>JEUX PLATEAUX</h1>
+        <div class="col-sm-4" *ngFor="let b of strategyGames.games">
+             <div class="ca">
+             <div class="card-body">
+                {{ b.name }}
+                <img src="{{ b.image_url}}" alt="">
+            </div>
+             </div>
+         </div>   
+     </div>
+</div>
+
+
