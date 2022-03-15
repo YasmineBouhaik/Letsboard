@@ -30,7 +30,7 @@ export class LocalisationComponent implements OnInit {
     {
     'type': 'Feature',
     'properties': {
-    'message': 'Foo',
+    'message': 'Lets Board, Ouvert 7 jours sur 7 de 15h à 2h',
     'iconSize': [60, 60]
     },
     'geometry': {
@@ -41,31 +41,32 @@ export class LocalisationComponent implements OnInit {
     {
     'type': 'Feature',
     'properties': {
-    'message': 'Bar',
+    'message': 'PLayers Bar, Ouvert 7 jours sur 7 de 15h à 2h',
     'iconSize': [50, 50]
     },
     'geometry': {
     'type': 'Point',
-    'coordinates': [3.0596739,50.6431594] as Mapboxgl.LngLatLike
+    'coordinates': [3.0562141,50.6334554] as Mapboxgl.LngLatLike
     }
     },
     {
     'type': 'Feature',
     'properties': {
-    'message': 'Baz',
+    'message': 'Gamers Bar, Ouvert 7 jours sur 7 de 15h à 2h',
+
     'iconSize': [40, 40]
     },
     'geometry': {
     'type': 'Point',
-    'coordinates': [3.0605796,50.6391748] as Mapboxgl.LngLatLike
+    'coordinates': [3.0653833,50.6283585] as Mapboxgl.LngLatLike
     }
     }
     ]
     };
 
-  // Add markers to the map.
+  //Add markers to the map.
   for (const marker of geojson.features) {
-    // Create a DOM element for each marker.
+  //Create a DOM element for each marker.
     const el = document.createElement('div');
     const width = marker.properties.iconSize[0];
     const height = marker.properties.iconSize[1];
@@ -74,15 +75,17 @@ export class LocalisationComponent implements OnInit {
     el.style.width = `${width}px`;
     el.style.height = `${height}px`;
     el.style.backgroundSize = '100%';
+    el.style.borderRadius = '50%';
+
     
     el.addEventListener('click', () => {
     window.alert(marker.properties.message);
     });
     
-    // Add markers to the map.
-    new Mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    .addTo(this.mapa);
-    }
+    //Add markers to the map.
+      new Mapboxgl.Marker(el)
+      .setLngLat(marker.geometry.coordinates)
+      .addTo(this.mapa);
+      }
 
   }}
