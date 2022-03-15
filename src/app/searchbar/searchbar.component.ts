@@ -73,10 +73,6 @@ export class SearchbarComponent implements OnInit {
     this.isShownWarning = false;
     this.isSendForm = false;
 
-    // fix not fixed footer
-    let element = document.querySelector("footer");
-    element?.classList.add("fixed-bottom");
-
     // get form values
     let category = this.formSearch.get("category")?.value;
     let name = this.formSearch.get("name")?.value;
@@ -127,8 +123,7 @@ export class SearchbarComponent implements OnInit {
         this.games = listGames;
         this.isSendForm = true;
 
-        // if list has more than one element, remove fix footer class
-        this.games.lentgh > 0 ? element?.classList.remove("fixed-bottom"): "";
+        this.games.length > 0 ? document.getElementById("categoriesContent")!.style.display = "none" : "";
   
       }catch(e){
         // api call didn't perform, display error
