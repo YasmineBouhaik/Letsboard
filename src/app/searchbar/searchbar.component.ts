@@ -11,6 +11,9 @@ import { firstValueFrom, lastValueFrom } from 'rxjs';
 
 export class SearchbarComponent implements OnInit {
 
+  /**
+   * variable initialization
+   */
   formSearch!: FormGroup;
   isShownWarning: boolean = false;
   isShownError: boolean = false;
@@ -20,6 +23,11 @@ export class SearchbarComponent implements OnInit {
   games: any;
   categories: any;
 
+  /**
+   * constructor
+   * @param fb 
+   * @param http 
+   */
   constructor(private fb: FormBuilder, private http: HttpClient) { 
     this.getCategories(this.urlCategories);
   }
@@ -33,6 +41,10 @@ export class SearchbarComponent implements OnInit {
     })
   }
 
+  /**
+   * Fill categories list
+   * @param url 
+   */
   async getCategories(url: string){
 
     try{
@@ -47,21 +59,31 @@ export class SearchbarComponent implements OnInit {
 
     }catch(e){
       console.log(e);
-      this.formSearch.get("ctegory")?.disable;
+      this.formSearch.get("category")?.disable;
     }
   }
 
+  /**
+   * search game function
+   */
   async searchGame(){
+    // we have to réinitialize variable (hide warnings/errors)
     this.games = [];
     this.isShownError = false;
     this.isShownWarning = false;
     this.isSendForm = false;
 
+    // fix not fixed footer
+    let element = document.querySelector("footer");
+    element?.classList.add("fixed-bottom");
+
+    // get form values
     let category = this.formSearch.get("category")?.value;
     let name = this.formSearch.get("name")?.value;
     let nbPlayerMin = this.formSearch.get("nbPlayerMin")?.value;
     let nbPlayerMax = this.formSearch.get("nbPlayerMax")?.value;
 
+    // check if form field have been typed
     let nbErrors: number = 0;
     Object.keys(this.formSearch.controls).forEach(key => {
       if(!this.formSearch.controls[key].value){
@@ -69,28 +91,34 @@ export class SearchbarComponent implements OnInit {
       }
     });
 
+    // if none of the fields exists, display warning
     if(nbErrors < 4){
       try{
         const url = `https://api.boardgameatlas.com/api/search?client_id=bORVr4JTJS`;
         
+        // deprecated api call
         // this.http.get(url).toPromise().then(data => {
         //   console.log(data);
         // });
     
+        // typescript try, didn't have the time to do it properly, not used
         interface responseApi {
           count: string,
           games: [],
-      }
+        }
   
+        // add params to url
         let params = new HttpParams();
         params = params.append('name', name);
         category ? params = params.append('categories', category) : "";
         nbPlayerMin ? params = params.append('min_players', nbPlayerMin) : "";
         nbPlayerMax ? params = params.append('gt_max_players', nbPlayerMax) : "";
 
+        // get http response
         let data: any = await firstValueFrom(this.http.get(url, { params: params }));
         let listGames = [];
   
+        // add each board game to the list
         for(let key in data.games){
           let obj = data.games[key];
           listGames.push(obj);
@@ -98,11 +126,16 @@ export class SearchbarComponent implements OnInit {
   
         this.games = listGames;
         this.isSendForm = true;
+
+        // if list has more than one element, remove fix footer class
+        this.games.lentgh > 0 ? element?.classList.remove("fixed-bottom"): "";
   
       }catch(e){
+        // api call didn't perform, display error
         this.isShownError = true;
       }
     }else{
+      // display warning -> type one field to search properly !
       this.isShownWarning = true;
     }
 
