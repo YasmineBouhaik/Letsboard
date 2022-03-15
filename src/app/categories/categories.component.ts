@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { JeuxService } from './../services/jeux.service';
 import { Component, OnInit } from '@angular/core';
 
 
