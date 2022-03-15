@@ -1,15 +1,47 @@
+import { HttpClient } from '@angular/common/http';
+import { JeuxService } from './../services/jeux.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
 
-  constructor() { }
+  boardGames: any = [];
+  cardGames: any = [];
+  strategyGames: any = [];
 
-  ngOnInit(): void {
+  constructor(http: HttpClient) {
+    http.get('https://api.boardgameatlas.com/api/search?client_id=bORVr4JTJS&categories=KUBCKBkGxV&limit=4').subscribe( response => {
+      console.log(response);
+      this.boardGames = response;      
+    })
+
+    http.get('https://api.boardgameatlas.com/api/search?client_id=bORVr4JTJS&categories=eX8uuNlQkQ&limit=4').subscribe( response => {
+        console.log(response);
+        this.cardGames = response;
+      })
+
+      http.get('https://api.boardgameatlas.com/api/search?client_id=bORVr4JTJS&categories=ge8pIhEUGE&limit=4').subscribe( response => {
+        console.log(response);
+        this.strategyGames = response;
+      })
+
+
+
+    }
   }
 
-}
+
+
+   
+    
+  
+
+  
+  
+    
+    
