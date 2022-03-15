@@ -1,3 +1,4 @@
+import { JeuxService } from './services/jeux.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,8 @@ import { LocalisationComponent } from './localisation/localisation.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { JeuxComponent } from './jeux/jeux.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CategoriesComponent,
     LocalisationComponent,
     SearchbarComponent
+    JeuxComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    JeuxService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
