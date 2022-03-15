@@ -11,8 +11,6 @@ import { LocalisationComponent } from './localisation/localisation.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import { JeuxComponent } from './jeux/jeux.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +30,6 @@ import { JeuxComponent } from './jeux/jeux.component';
     HttpClientModule
   ],
   providers: [
-    JeuxService
   ],
   bootstrap: [AppComponent]
 })
