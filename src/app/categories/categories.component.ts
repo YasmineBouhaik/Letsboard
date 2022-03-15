@@ -24,15 +24,12 @@ export class CategoriesComponent {
         this.cardGames = response;
       })
 
-      http.get('https://api.boardgameatlas.com/api/search?client_id=bORVr4JTJS&categories=ge8pIhEUGE&limit=4').subscribe( response => {
-        console.log(response);
-        this.strategyGames = response;
-      })
-
-
-
-    }
+    http.get('https://api.boardgameatlas.com/api/search?client_id=bORVr4JTJS&categories=ge8pIhEUGE&limit=4').subscribe( response => {
+      console.log(response);
+      this.strategyGames = response;
+    })
   }
+}
 
 
 
