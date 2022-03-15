@@ -1,3 +1,4 @@
+import { JeuxService } from './services/jeux.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LocalisationComponent } from './localisation/localisation.component';
+import {HttpClientModule} from '@angular/common/http';
+import { JeuxComponent } from './jeux/jeux.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,19 @@ import { LocalisationComponent } from './localisation/localisation.component';
     FooterComponent,
     HomeComponent,
     CategoriesComponent,
-    LocalisationComponent
+    LocalisationComponent,
+    JeuxComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+  
+
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
