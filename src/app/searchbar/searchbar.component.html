@@ -1,40 +1,55 @@
 <div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-lg-10">
+
+            <div *ngIf="isShownWarning" class="alert alert-warning mb-3">
+                <span>Please type one field at least !</span>
+            </div>
+            
+            <div *ngIf="isShownError" class="alert alert-warning mb-3">
+                <span>An error occured, please try later or contact your administrator.</span>
+            </div>
+
             <div class="card">
                 <form [formGroup]="formSearch" class="d-flex flex-wrap">
-                    <div class="card-body col-lg-3 col-12 px-0 py-2 border-end">
-                        <select formControlName="category" class="gameName" class="form-control border-0" name="gameName" placeholder="Catégorie">
-                            <option value="">Sélectionner une catégorie</option>
+                    <div class="card-body d-flex justify-content-center align-items-center col-lg-3 col-12 px-0 py-2 border-end">
+                        <select formControlName="category" class="gameName" class="form-control border-0" name="gameName">
+                            <option value="">Select a category</option>
+                            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                         </select>
-                        <!-- <div>
-                            <i class="bi bi-arrow-down bg-primary"></i>
-                        </div> -->
+                        <div class="pe-4">
+                            <i class="bi bi-arrow-down"></i>
+                        </div>
                     </div>
                     <div class="card-body col-lg-4 col-12 px-0 py-2 border-end">
-                        <input formControlName="name" type="text"  class="form-control border-0" name="gameName" placeholder="Loup garou" />
+                        <input formControlName="name" type="text"  class="form-control border-0" name="gameName" placeholder="The Werewolves of Millers Hollow" />
                     </div>
                     <div class="card-body col-lg-2 col-12 px-0 py-2 border-end">
-                        <input formControlName="nbPlayerMin" type="number" class="form-control border-0" name="nbMinPlayer" placeholder="Joueurs min" />
+                        <input formControlName="nbPlayerMin" type="number" class="form-control border-0" name="nbMinPlayer" placeholder="Min Players" />
                     </div>
                     <div class="card-body col-lg-2 col-12 px-0 py-2 border-end">
-                        <input formControlName="nbPlayerMax" type="number"  class="form-control border-0" name="nbMaxPlayer" placeholder="Joueurs max" />
+                        <input formControlName="nbPlayerMax" type="number"  class="form-control border-0" name="nbMaxPlayer" placeholder="Max Players" />
                     </div>
                     
                     <div class="card-body col-lg-1 col-12 px-0 py-0">
-                        <button class="btn btn-primary rounded-0" (click)="searchGame()">
+                        <button class="btn rounded-0" (click)="searchGame()">
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
                 </form>
             </div>
+
+            <div *ngIf="games.length === 0 && isSendForm" class="alert alert-warning mt-3">
+                <span>No games were found, try something else.</span>
+            </div>
         </div>
     </div>
 </div>
 
+
 <div class="container mt-3">
     <div class="row justify-content-center">
-        <div *ngFor="let item of items" class="col-lg-10 py-2">
+        <div *ngFor="let item of games" class="col-lg-10 py-2">
             <div class="card" *ngIf="item.description_preview">
                <div class="card-body">
                    <div class="d-flex flex-wrap justify-content-between">
@@ -43,8 +58,14 @@
                        </div>
                        <div class="col-lg-8 col-md-12 col-sm-12 ps-lg-5 ps-md-0 ps-sm-0">
                         <h5 class="card-title">{{ item.name }}</h5>
-                        <div>
+                        <div class="mt-3">
                             <p>{{ item.description_preview }}</p>
+                            
+                            <div class="mt-3">
+                                <p *ngIf="item.min_players">Minimum number of players required : {{ item.min_players }}</p>
+                                <p *ngIf="item.max_players">Maximum number of players allowed : {{ item.max_players }}</p>
+                                <p *ngIf="item.max_playtime">A game can last {{ item.max_players }} min maximum.</p>
+                            </div>
                         </div>
                        </div>
                    </div>
