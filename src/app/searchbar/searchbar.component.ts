@@ -85,8 +85,8 @@ export class SearchbarComponent implements OnInit {
         let params = new HttpParams();
         params = params.append('name', name);
         category ? params = params.append('categories', category) : "";
-        nbPlayerMin ? params = params.append('gt_min_players', nbPlayerMin) : "";
-        nbPlayerMax ? params = params.append('max_players', nbPlayerMax) : "";
+        nbPlayerMin ? params = params.append('min_players', nbPlayerMin) : "";
+        nbPlayerMax ? params = params.append('gt_max_players', nbPlayerMax) : "";
 
         let data: any = await firstValueFrom(this.http.get(url, { params: params }));
         let listGames = [];
