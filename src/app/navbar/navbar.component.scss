@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300&display=swap');
-
 $deepSpaceBlue: #335C67;
+$indianYellow: #E09F3E;
 
 nav{
     background-color: $deepSpaceBlue;
 
     a{
-        font-family: "Sansita Swashed", "sans-serif";
+        font-family: 'Luckiest Guy', cursive;
         font-size: 1.5em;
     }
 
     .nav-link, .navbar-brand{
-        color: white;
+        color: $indianYellow;
     }
     
     .navbar-brand{
